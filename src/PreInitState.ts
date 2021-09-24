@@ -1,6 +1,6 @@
 import * as Phaser from "phaser";
 
-import { baseURL } from "./constants/loading";
+import {baseURL} from "./constants/loading";
 
 const sceneConfig: Phaser.Types.Scenes.SettingsConfig = {
   active: false,

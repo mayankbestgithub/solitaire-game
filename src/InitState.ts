@@ -1,8 +1,8 @@
 import * as Phaser from "phaser";
 
 // Card images
-import { images } from "./constants/assets";
-import { baseURL } from "./constants/loading";
+import {images} from "./constants/assets";
+import {baseURL} from "./constants/loading";
 
 const sceneConfig: Phaser.Types.Scenes.SettingsConfig = {
   active: false,
@@ -27,9 +27,7 @@ export default class InitState extends Phaser.Scene {
     progressBox.fillRect(215, 270, 110, 10);
 
     const progressBar = this.add.graphics();
-
-    const { height, width } = this.cameras.main;
-
+    const {height, width} = this.cameras.main;
     const assetText = this.make.text({
       style: {
         color: "#000000",
@@ -48,7 +46,7 @@ export default class InitState extends Phaser.Scene {
       progressBar.fillRect(217, 272, 106 * value, 6);
     });
 
-    this.load.on("fileprogress", (file: { key: string }) =>
+    this.load.on("fileprogress", (file: {key: string}) =>
       assetText.setText(`Loading asset: ${file.key}`)
     );
 
@@ -59,8 +57,8 @@ export default class InitState extends Phaser.Scene {
     });
 
     // Images
-    images.forEach(({ key, file }: { key: string; file: string }) => {
-      console.log(" Key " + key, " file " + file)
+    images.forEach(({key, file}: {key: string; file: string}) => {
+      console.log(` Key ${  key}`, ` file ${  file}`)
       this.load.image(key, file)
     }
       

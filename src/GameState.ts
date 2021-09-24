@@ -69,7 +69,9 @@ export default class GameState extends Phaser.Scene {
 
       // Draw zone
       if (k === "stock") {
-        zone.on("pointerdown", () => this.drawCard(), this);
+        zone.on("pointerdown", () => {
+          this.drawCard();
+        }, this);
         zone.setDepth(99);
       }
 
@@ -87,26 +89,32 @@ export default class GameState extends Phaser.Scene {
   }
 
   public createInputListeners(): void {
+    /* eslint max-lines-per-function: ["error", { "max":56  }]*/
     // Start drag card
     this.input.on(
       "dragstart",
       (
         _pointer: Phaser.Input.Pointer,
         gameObject: Phaser.GameObjects.GameObject
-      ) => gameObject instanceof Card && this.dragCardStart(gameObject),
+      ) => {
+        if (gameObject instanceof Card) {
+          this.dragCardStart(gameObject); 
+        } 
+      },
       this
     );
-
     // End drag card
     this.input.on(
       "dragend",
       (
         _pointer: Phaser.Input.Pointer,
         gameObject: Phaser.GameObjects.GameObject
-      ) => gameObject instanceof Card && this.dragCardEnd(),
+      ) => {
+        if (gameObject instanceof Card) {
+       this.dragCardEnd();  
+       } },
       this
     );
-
     // Drop on pile
     this.input.on(
       "drop",
@@ -114,10 +122,12 @@ export default class GameState extends Phaser.Scene {
         _pointer: Phaser.Input.Pointer,
         gameObject: Phaser.GameObjects.GameObject,
         dropZone: Phaser.GameObjects.GameObject
-      ) => gameObject instanceof Card && this.dropCard(gameObject, dropZone),
+      ) => {
+        if (gameObject instanceof Card) {
+        this.dropCard(gameObject, dropZone);  
+      }  },
       this
     );
-
     // Drag card
     this.input.on(
       "drag",
@@ -127,7 +137,10 @@ export default class GameState extends Phaser.Scene {
         dragX: number,
         dragY: number
       ) =>
-        gameObject instanceof Card && this.dragCard(gameObject, dragX, dragY),
+      {
+        if (gameObject instanceof Card) {
+      this.dragCard(gameObject, dragX, dragY); 
+      } },
       this
     );
   }
@@ -137,7 +150,7 @@ export default class GameState extends Phaser.Scene {
     this.add.graphics().fillStyle(0xffffff, 1).fillRect(10, 5, 80, 18);
 
     this.add
-      .text(12, 7, "Redeals", { color : "#000" })
+      .text(12, 7, "Redeals", {color : "#000"})
       .setInteractive()
       .on(
         "pointerdown",
@@ -152,7 +165,7 @@ export default class GameState extends Phaser.Scene {
     this.add.graphics().fillStyle(0xffffff, 1).fillRect(100, 5, 80, 18);
 
     this.add
-      .text(102, 7, "New Deal", { color: "#000" })
+      .text(102, 7, "New Deal", {color: "#000"})
       .setInteractive()
       .on(
         "pointerdown",
@@ -188,7 +201,7 @@ export default class GameState extends Phaser.Scene {
   public drawCard(): void {
     // Get top card on current stack
     const topCard = this.deck.topCard("stock");
-    console.log("topcard" + " suit "+topCard?.suit+" value "+topCard?.value+" position "+topCard?.position+ " flipped "+topCard?.flipped);
+    
     // Empty stack
     if (topCard) {
       const topCardDisc = this.deck.topCard("discard");
@@ -203,7 +216,7 @@ export default class GameState extends Phaser.Scene {
       let currentTop = this.deck.topCard("discard");
       let position = 0;
       console.log("else");
-      console.log("current top "+currentTop);
+      
       while (currentTop) {
         currentTop.reposition("stock", position)
         currentTop.flipBack(this);
@@ -275,7 +288,7 @@ export default class GameState extends Phaser.Scene {
     // Drop all other cards on top
     console.log('drag card end operation');
     this.dragChildren.forEach((child: Card) =>
-      child.reposition(child.pile, child.position)
+      { child.reposition(child.pile, child.position); }
     );
   }
 

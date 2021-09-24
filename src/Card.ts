@@ -65,6 +65,7 @@ export default class Card extends Phaser.GameObjects.Sprite {
     this.setTexture("img_card_back_green");
     scene.input.setDraggable(this, false);
     this.flipped = false;
+    
   }
 
   public selectImage(suit: number, value: number): string {
