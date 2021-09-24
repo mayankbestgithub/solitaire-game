@@ -51,8 +51,7 @@ export default class Deck {
 
   public cardChildren(card: Card): Card[] {
     return this.cards
-      .flatMap((curr: Card) =>
-        curr.pile === card.pile && curr.position >= card.position ? [curr] : []
+      .flatMap((curr: Card) =>curr.pile === card.pile && curr.position >= card.position ? [curr] : []
       )
       .sort((a: Card, b: Card) => a.position - b.position);
       

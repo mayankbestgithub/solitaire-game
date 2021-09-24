@@ -137,7 +137,7 @@ export default class GameState extends Phaser.Scene {
     this.add.graphics().fillStyle(0xffffff, 1).fillRect(10, 5, 80, 18);
 
     this.add
-      .text(12, 7, "Redeals", { fill: "#000" })
+      .text(12, 7, "Redeals", { color : "#000" })
       .setInteractive()
       .on(
         "pointerdown",
@@ -152,7 +152,7 @@ export default class GameState extends Phaser.Scene {
     this.add.graphics().fillStyle(0xffffff, 1).fillRect(100, 5, 80, 18);
 
     this.add
-      .text(102, 7, "New Deal", { fill: "#000" })
+      .text(102, 7, "New Deal", { color: "#000" })
       .setInteractive()
       .on(
         "pointerdown",
@@ -168,18 +168,18 @@ export default class GameState extends Phaser.Scene {
 
   public createText(): void {
     this.scoreText = this.add.text(450, 12, "", {
-      fill: "#FFF",
+      color: "#FFF",
       fontSize: "16px",
     });
 
     this.gameNumText = this.add.text(10, 12, "", {
-      fill: "#FFF",
+      color: "#FFF",
       fontSize: "16px",
     });
 
     this.winText = this.add
       .text(20, this.cameras.main.height - 40, "You Win!", {
-        fill: "#FFF",
+        color: "#FFF",
         fontSize: "24px",
       })
       .setVisible(false);
