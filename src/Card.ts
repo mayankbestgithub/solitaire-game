@@ -35,7 +35,6 @@ export default class Card extends Phaser.GameObjects.Sprite {
 
     this.setDepth(this.position + 10);
 
-    console.log("Piles positioning...");
     if (this.pile === "stock" || this.pile === "discard") {
       this.setPosition(
         Piles.pilePositions[this.pile].x + position,
@@ -52,7 +51,7 @@ export default class Card extends Phaser.GameObjects.Sprite {
         Piles.pilePositions[this.pile].y
       );
     }
-    console.log(pile,position);
+    
   }
 
   public flip(scene: Phaser.Scene): void {

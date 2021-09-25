@@ -12,7 +12,6 @@ export default class Deck {
         this.cards.push(new Card(scene, i, t));
       }
     }
-    console.log(this.cards);
     this.shuffle(this.cards);
     this.deal(scene);
   }

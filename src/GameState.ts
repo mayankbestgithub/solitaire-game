@@ -46,8 +46,6 @@ export default class GameState extends Phaser.Scene {
   }
 
   public createZones(): void {
-    console.log("Piles position");
-    console.log(Object.keys(Piles.pilePositions));
     Object.keys(Piles.pilePositions).forEach((k: string) => {
       // Additional height for tableau
       const addHeight = k.match(/tableau_*/u) ? 100 : 0;
@@ -266,27 +264,24 @@ export default class GameState extends Phaser.Scene {
 
   public dragCardStart(card: Card): void {
     // Populate drag children
-    console.log('drag card start operation')
+    
     this.dragChildren = [];
-    console.log(card.pile,card.position);
+    
     if (card.pile.match(/tableau_*/u)) {
       this.dragChildren = this.deck.cardChildren(card);
-      console.log(this.dragChildren);
+      
     } else {
       this.dragChildren.push(card);
-      console.log(this.dragChildren);
     }
 
     // Set depths
     for (let i = 0; i < this.dragChildren.length; i += 1) {
       this.dragChildren[i].setDepth(100 + i);
     }
-    console.log(this.dragChildren)
   }
 
   public dragCardEnd(): void {
     // Drop all other cards on top
-    console.log('drag card end operation');
     this.dragChildren.forEach((child: Card) =>
       { child.reposition(child.pile, child.position); }
     );
@@ -294,7 +289,6 @@ export default class GameState extends Phaser.Scene {
 
   public dragCard(_card: Card, dragX: number, dragY: number): void {
     // Set positions
-    console.log('drag card operation');
     for (let i = 0; i < this.dragChildren.length; i += 1) {
       this.dragChildren[i].x = dragX;
       this.dragChildren[i].y = dragY + i * 16;
@@ -306,8 +300,6 @@ export default class GameState extends Phaser.Scene {
     // Get top card on current stack
     const topCard = this.deck.topCard(dropZone.name);
     const cardPile = card.pile;
-    console.log('drop operation');
-    console.log(dropZone.name);
     // Empty stack
     if (!topCard) {
       if (dropZone.name.match(/tableau_*/u)) {
