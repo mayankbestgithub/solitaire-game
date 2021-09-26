@@ -213,7 +213,7 @@ export default class GameState extends Phaser.Scene {
     } else {
       let currentTop = this.deck.topCard("discard");
       let position = 0;
-      console.log("else");
+      
       
       while (currentTop) {
         currentTop.reposition("stock", position)

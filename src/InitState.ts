@@ -58,7 +58,7 @@ export default class InitState extends Phaser.Scene {
 
     // Images
     images.forEach(({key, file}: {key: string; file: string}) => {
-      console.log(` Key ${  key}`, ` file ${  file}`)
+      
       this.load.image(key, file)
     }
       
