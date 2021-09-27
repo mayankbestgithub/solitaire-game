@@ -39,6 +39,5 @@
   "dependencies": {
     "express": "^4.17.1",
     "phaser": "^3.16.2"
-  },
-  
+  }
 }
