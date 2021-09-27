@@ -4,8 +4,8 @@
   "description": "Solitaire game in JS using Phaser",
   "main": "src/app.ts",
   "scripts": {
-    "heroku-prebuild": "npm install --dev",
-    "build": "webpack --config webpack/prod.js",
+    "heroku-prebuild": "",
+    "build": "webpack --config webpack/prod.js && npm run open:dist",
     "start": "webpack serve --config webpack/dev.js",
     "lint": "eslint --fix ."
   },
@@ -37,6 +37,11 @@
     "webpack-merge": "^5.1.1"
   },
   "dependencies": {
+    "express": "^4.17.1",
     "phaser": "^3.16.2"
-  }
+  },
+  "engines": {
+    "node": "14.0.0",
+    "npm": ">=3"
+  },
 }
