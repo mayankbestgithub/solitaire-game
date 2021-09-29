@@ -9,7 +9,6 @@ const config: Phaser.Types.Core.GameConfig = {
   parent: "game-container",
   scene: [PreInitState, InitState, GameState],
   type: Phaser.AUTO
-  
 };
 
 export const game = new Phaser.Game(config);
