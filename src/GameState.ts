@@ -34,7 +34,7 @@ export default class GameState extends Phaser.Scene {
     this.dragChildren = [];
 
     // Add background
-    this.add.image(550 / 2, 0, "img_background");
+    this.add.image(500,500, "img_background");
 
     // Add deck
     this.deck = new Deck(this);

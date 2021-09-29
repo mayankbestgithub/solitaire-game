@@ -59,6 +59,9 @@ export default class InitState extends Phaser.Scene {
     // Images
     images.forEach(({key, file}: {key: string; file: string}) => {
       
+      if (key == "img_background") {
+        
+      }
       this.load.image(key, file)
     }
       
