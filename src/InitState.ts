@@ -18,10 +18,8 @@ export default class InitState extends Phaser.Scene {
   public preload(): void {
     // Set base url
     this.load.baseURL = baseURL;
-
     // Background
     this.add.image(550 / 2, 400 / 2, "img_load");
-
     const progressBox = this.add.graphics();
     progressBox.fillStyle(0xaaaaaa, 0.8);
     progressBox.fillRect(215, 270, 110, 10);
@@ -58,10 +56,6 @@ export default class InitState extends Phaser.Scene {
 
     // Images
     images.forEach(({key, file}: {key: string; file: string}) => {
-      
-      if (key == "img_background") {
-        
-      }
       this.load.image(key, file)
     }
       
