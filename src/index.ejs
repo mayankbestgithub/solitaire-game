@@ -40,21 +40,31 @@
   <body>
     <div id="game-container">
       <div id="full">
-        <a onclick="fullscreen()" href="javascript:void(0);"
-          >Click here for full screen</a
-        >
+        <button onclick="fullscreen()" title="Press Esc to Exit">
+          Full Screen
+        </button>
       </div>
     </div>
   </body>
   <script>
+    var isFullScreen = false;
     function fullscreen() {
-      console.log("hello");
-
       var canvas = document.querySelector("canvas");
       if (canvas) {
         canvas.style.width = "100%";
         canvas.style.height = "100%";
+        isFullScreen = true;
       }
     }
+    function keyPress(e) {
+      var canvas = document.querySelector("canvas");
+      if (e.key === "Escape" && isFullScreen) {
+        if (canvas) {
+          canvas.style.width = "";
+          canvas.style.height = "";
+        }
+      }
+    }
+    document.addEventListener("keyup", keyPress);
   </script>
 </html>
