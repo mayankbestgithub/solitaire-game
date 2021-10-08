@@ -1,6 +1,5 @@
 /* eslint-disable max-lines */
 import * as Phaser from "phaser";
-
 import Deck from "./Deck";
 import Card from "./Card";
 import Piles from "./Piles";
@@ -35,7 +34,8 @@ export default class GameState extends Phaser.Scene {
 
     // Add background
     this.add.image(500,500, "img_background");
-
+    
+    
     // Add deck
     this.deck = new Deck(this);
 
@@ -43,6 +43,7 @@ export default class GameState extends Phaser.Scene {
     this.createInputListeners();
     this.createButtons();
     this.createText();
+    
   }
 
   public createZones(): void {
@@ -174,9 +175,34 @@ export default class GameState extends Phaser.Scene {
           this.score = 0;
         },
         this
+    );
+    this.add.graphics().fillStyle(0xffffff, 1).fillRect(200, 5, 99, 18);
+    this.add
+      .text(202, 7, "FullScreen", {color: "#000"})
+      .setInteractive()
+      .on(
+        "pointerdown",
+        () => {
+          this.gofull();
+          
+        },
+        this
       );
   }
 
+  public gofull(): void {
+   
+    if (this.scale.isFullscreen)
+    {
+      this.scale.stopFullscreen();
+    }
+    else
+    {
+      this.scale.scaleMode = Phaser.Scale.ScaleModes.FIT;
+        this.scale.startFullscreen();
+    }
+  }
+  
   public createText(): void {
     this.scoreText = this.add.text(450, 12, "", {
       color: "#FFF",

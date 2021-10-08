@@ -27,44 +27,24 @@
         right: 0;
         position: absolute;
       }
-      .full-screen {
-        width: 100%;
-        height: 100%;
-      }
-
-      #full > a {
-        text-align: center;
-      }
     </style>
   </head>
   <body>
-    <div id="game-container">
-      <div id="full">
-        <button onclick="fullscreen()" title="Press Esc to Exit">
-          Full Screen
-        </button>
-      </div>
-    </div>
-  </body>
-  <script>
-    var isFullScreen = false;
-    function fullscreen() {
-      var canvas = document.querySelector("canvas");
-      if (canvas) {
-        canvas.style.width = "100%";
-        canvas.style.height = "100%";
-        isFullScreen = true;
-      }
-    }
-    function keyPress(e) {
-      var canvas = document.querySelector("canvas");
-      if (e.key === "Escape" && isFullScreen) {
-        if (canvas) {
-          canvas.style.width = "";
-          canvas.style.height = "";
+    <div id="game-container"></div>
+    <script>
+      console.log("loaded");
+
+      function keyPress(event) {
+        console.log(event.key);
+        if (event.key == "Escape") {
+          console.log("hello");
+          var canvas = document.querySelector("canvas");
+          canvas.style.removeProperty("width");
+          canvas.style.removeProperty("height");
         }
       }
-    }
-    document.addEventListener("keyup", keyPress);
-  </script>
+      document.addEventListener("keyup", keyPress);
+     
+    </script>
+  </body>
 </html>
