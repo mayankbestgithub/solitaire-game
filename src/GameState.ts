@@ -23,6 +23,8 @@ export default class GameState extends Phaser.Scene {
 
   private winText!: Phaser.GameObjects.Text;
 
+  private fullButtonText!: Phaser.GameObjects.Text;
+  
   public constructor() {
     super(sceneConfig);
   }
@@ -88,7 +90,7 @@ export default class GameState extends Phaser.Scene {
   }
 
   public createInputListeners(): void {
-    /* eslint max-lines-per-function: ["error", { "max":56  }]*/
+    /* eslint max-lines-per-function: ["error", { "max":78  }]*/
     // Start drag card
     this.input.on(
       "dragstart",
@@ -177,13 +179,13 @@ export default class GameState extends Phaser.Scene {
         this
     );
     this.add.graphics().fillStyle(0xffffff, 1).fillRect(200, 5, 99, 18);
-    this.add
-      .text(202, 7, "FullScreen", {color: "#000"})
+    this.fullButtonText = this.add.text(202, 7, "FullScreen", {color: "#000"});
+    this.fullButtonText
       .setInteractive()
       .on(
         "pointerdown",
         () => {
-          this.gofull();
+          this.gofull()
           
         },
         this
@@ -191,16 +193,22 @@ export default class GameState extends Phaser.Scene {
   }
 
   public gofull(): void {
-   
-    if (this.scale.isFullscreen)
-    {
+    const fullText = 'FullScreen';
+    const exitText = 'ExitScreen';
+    this.scale.scaleMode = Phaser.Scale.ScaleModes.NONE;
+    if (this.scale.isFullscreen) {
+      this.fullButtonText.setText(fullText);
       this.scale.stopFullscreen();
+      
+    } else {
+      this.fullButtonText.setText(exitText);
+     this.scale.scaleMode = Phaser.Scale.ScaleModes.FIT; 
+      this.scale.toggleFullscreen();
     }
-    else
-    {
-      this.scale.scaleMode = Phaser.Scale.ScaleModes.FIT;
-        this.scale.startFullscreen();
-    }
+  
+    
+    
+    
   }
   
   public createText(): void {

@@ -32,19 +32,29 @@
   <body>
     <div id="game-container"></div>
     <script>
-      console.log("loaded");
-
-      function keyPress(event) {
-        console.log(event.key);
-        if (event.key == "Escape") {
-          console.log("hello");
-          var canvas = document.querySelector("canvas");
-          canvas.style.removeProperty("width");
-          canvas.style.removeProperty("height");
+      function IsFullScreen() {
+        return !!(
+          document.fullscreenElement ||
+          document.mozFullScreenElement ||
+          document.webkitFullscreenElement ||
+          document.msFullscreenElement
+        );
+      }
+      function exitHandler(event) {
+        var canvas = document.querySelector("canvas");
+        if (canvas && !IsFullScreen()) {
+          console.log("exit handler called");
+          setTimeout(() => {
+            canvas.style.removeProperty("width");
+            canvas.style.removeProperty("height");
+          },canvas, 3000);
         }
       }
-      document.addEventListener("keyup", keyPress);
-     
+      document.addEventListener("fullscreenchange", exitHandler);
+      document.addEventListener("webkitfullscreenchange", exitHandler);
+      document.addEventListener("mozfullscreenchange", exitHandler);
+      document.addEventListener("MSFullscreenChange", exitHandler);
+      // document.addEventListener("keyup", exitHandler);
     </script>
   </body>
 </html>
